@@ -1,0 +1,5 @@
+NOME;MATRICULA;EMAIL
+Zeca;11;ze@gmail.com
+Xuxa;99;xuxa@gmail.com
+Chico Bento;123;chico@gmail.com
+Fulano;0;fulano@hotmail.com
