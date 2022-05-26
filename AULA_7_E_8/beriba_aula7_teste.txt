@@ -1,0 +1,5 @@
+ID;NOME;COD_BARRAS;DESCRICAO;URL_DA_IMAGEM;VALOR;QUANTIDADE;PESO
+6661;lataria;2213;aaab;;;;
+1231;212;333;bbbb;23213;dwqeq;wdeq;weqewq
+31231;212;222;bbSbb;dassda;dwqeq;wdeq;weqewq
+231;212;111;bbbSAb;232ASA13;dwqeq;wdeq;weqew
