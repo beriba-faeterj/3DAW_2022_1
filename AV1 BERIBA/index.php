@@ -27,7 +27,7 @@ AV1 - 3DAW Manhã - 2022.1
         <h1>AV1 - Beriba - 3DAW Manhã - 2022.1</h1>
         <h2>Observações</h2>
         <ul>
-            <li>Aparentemente o PHP não lida muito bem com requisições DELETE sozinho (não puxa variáveis direto que nem o POST e p GET), então usei GET para listar e POST para todos os outros (referência: https://www.php.net/manual/pt_BR/reserved.variables.php)</li>
+            <li>Aparentemente o PHP não lida muito bem com requisições DELETE sozinho (não puxa variáveis direto que nem o POST e o GET), então usei GET para listar e POST para todos os outros (referência: https://www.php.net/manual/pt_BR/reserved.variables.php)</li>
         </ul>
     <main>
 </body>
