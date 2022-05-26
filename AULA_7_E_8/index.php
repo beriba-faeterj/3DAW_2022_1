@@ -36,7 +36,7 @@ Tema da aula: Exercício de fixação para a prova
             <li>Link de imagem para teste: https://farm4.staticflickr.com/3894/15008518202_c265dfa55f_h.gif</li>
         </ul>
         <ul>
-            <li>Aparentemente o PHP não lida muito bem com requisições DELETE sozinho (não puxa variáveis direto que nem o POST e p GET), então usei GET para listar e POST para todos os outros (referência: https://www.php.net/manual/pt_BR/reserved.variables.php)</li>
+            <li>Aparentemente o PHP não lida muito bem com requisições DELETE sozinho (não puxa variáveis direto que nem o POST e o GET), então usei GET para listar e POST para todos os outros (referência: https://www.php.net/manual/pt_BR/reserved.variables.php)</li>
         </ul>
     <main>
 </body>
