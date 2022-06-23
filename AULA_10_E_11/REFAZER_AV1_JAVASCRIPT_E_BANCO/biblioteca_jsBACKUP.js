@@ -1,0 +1,208 @@
+
+// Essa função recebe uma string e converta ela em um JSON. Se ocorrer algum erro
+// (por exemplo, a string não está em formato JSON), a função retorna NULL.
+function toJSON(string) {  
+    try {
+        return JSON.parse(string);  
+    } catch (e) {
+        return null;
+    }
+};
+
+// Essa função recebe uma array de JSON de funcionários e lista cada item
+// com as informações e formatação adequadas.
+function retornaListaFunc(array) {
+    let stringRetorno = '<div id="form">';
+
+    for (var i in array) {
+        stringRetorno += `
+            <br><br>
+            Nome:  ${array[i].nome}<br>
+            Matrícula:  ${array[i].matricula}<br>
+            Função: ${array[i].funcao}<br>
+
+            <br>
+            <div class="flex-container" style="justify-content: flex-start">
+            <form method="post" action="../excluir/excluir.php">
+            <input type="hidden" name="matricula" id="matricula" value="${array[i].matricula}">
+            <input type="button" name="excluir" id="excluir" value="Excluir" onClick="excluirFunc();">
+            </form>
+            <form method="GET" action="../listar/listar.php">
+            <input type="hidden" name="matricula" id="matricula" value="${array[i].matricula}">
+            <input type="button" name="alterar" id="alterar" value="Alterar" onClick="geraFormAlteracao();">
+            </form>
+            </div>
+        `;
+    }
+
+    stringRetorno += "</div>"
+
+    return stringRetorno;
+}
+
+function incluirFunc() {
+    const funcionario = {
+        "nome": document.getElementById("nome").value,
+        "matricula": document.getElementById("matricula").value,
+        "funcao": document.getElementById("funcao").value,
+        "senha": document.getElementById("senha").value
+    };
+
+    const stringFunc = JSON.stringify(funcionario);
+
+    const xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onload = function() {
+        document.getElementById("nome").value = null;
+        document.getElementById("matricula").value = null;
+        document.getElementById("funcao").value = null;
+        document.getElementById("senha").value = null;
+        document.getElementById("retorno").innerHTML = xmlhttp.responseText;
+    }
+
+    xmlhttp.open("POST", "incluir.php");
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("incluir=" + stringFunc);
+}
+
+function excluirFunc() {
+    const funcionario = {
+        "matricula": document.getElementById("matricula").value
+    };
+
+    const stringFunc = JSON.stringify(funcionario);
+
+    const xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onload = function() {
+        document.getElementById("form").style.display = "none";
+
+        document.getElementById("retorno").innerHTML = xmlhttp.responseText;
+    }
+
+    xmlhttp.open("POST", "excluir.php");
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("excluir=" + stringFunc);
+}
+
+function listarFunc() {
+    const funcionario = {
+        "matricula": document.getElementById("matricula").value
+    };
+
+    const func = JSON.stringify(funcionario);
+
+    const xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onload = function() {
+        document.getElementById("form").style.display = "none";
+
+        const retorno = xmlhttp.responseText;
+
+        //document.getElementById("matricula").value = null;
+        
+        const arrayFunc = toJSON(retorno);
+
+        if (arrayFunc === null) {
+            document.getElementById("retorno").innerHTML = retorno;
+        }
+        else {
+            // let stringRetorno = '';
+
+            // for (var i in arrayFunc) {
+            //     stringRetorno += `
+            //         <br><br>
+            //         Nome:  ${arrayFunc[i].nome}<br>
+            //         Matrícula:  ${arrayFunc[i].matricula}<br>
+            //         Função: ${arrayFunc[i].funcao}<br>
+
+            //         <br><div class="flex-container" style="justify-content: flex-start"><form method="post" action="../excluir/excluir.php">
+            //         <input type="hidden" name="matricula" id="matricula" value="${arrayFunc[i].matricula}">
+            //         <input type="submit" name="excluirMatr" value="Excluir">
+            //         </form>
+            //         <form method="post" action="../alterar/alterar.php">
+            //         <input type="hidden" name="matricula" id="matricula" value="${arrayFunc[i].matricula}">
+            //         <input type="submit" name="alterarMatr" value="Alterar">
+            //         </form></div>
+            //     `;
+            // }
+
+            document.getElementById("retorno").innerHTML = retornaListaFunc(arrayFunc);
+        }
+    }
+
+    xmlhttp.open("GET","listar.php?matr=" + func);
+    xmlhttp.send();
+}
+
+function geraFormAlteracao() {
+    const funcionario = {
+        "matricula": document.getElementById("matricula").value
+    };
+
+    const func = JSON.stringify(funcionario);
+
+    const xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onload = function() {
+        document.getElementById("form").style.display = "none";
+
+        const retorno = xmlhttp.responseText;
+        
+        const funcionario = toJSON(retorno);
+
+        if (funcionario === null) {
+            document.getElementById("retorno").innerHTML = retorno;
+        }
+        else {
+            const stringRetorno = `
+                <br><br>
+                <div id="form2">
+                <form method="GET" action="../listar/listar.php">
+                Nome: <input type="text" name="nome" id="nome" value="${funcionario[0].nome}"><br>
+                Matrícula: <input type="text" name="dummy" id="dummy" value="${funcionario[0].matricula}" disabled><br>
+                Função: <input type="text" name="funcao" id="funcao" value="${funcionario[0].funcao}"><br>
+                Senha Atual: <input type="password" name="senhaAtual" id="senhaAtual" value=""><br>
+                Nova Senha: <input type="password" name="senhaNova" id="senhaNova" value=""><br>
+                <input type="hidden" name="id" id="id" value="${funcionario[0].id}">
+                <input type="hidden" name="matriculaALT" id="matriculaALT" value="${funcionario[0].matricula}">
+                <input type="button" name="alterar" id="alterar" value="Alterar" onClick="alterarFunc();">
+                </form>
+                </div>
+                <br><br>
+            `;
+
+            document.getElementById("retorno").innerHTML = stringRetorno;
+        }
+    }
+
+    console.log(func);
+
+    xmlhttp.open("GET","../listar/listar.php?matr=" + func);
+    xmlhttp.send();
+}
+
+function alterarFunc() {
+    const funcionario = {
+        "id": document.getElementById("id").value,
+        "nome": document.getElementById("nome").value,
+        "matricula": document.getElementById("matriculaALT").value,
+        "funcao": document.getElementById("funcao").value,
+        "senhaAtual": document.getElementById("senhaAtual").value,
+        "senhaNova": document.getElementById("senhaNova").value
+    };
+
+    const stringFunc = JSON.stringify(funcionario);
+
+    const xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onload = function() {
+        document.getElementById("form2").style.display = "none";
+        
+        document.getElementById("retorno").innerHTML = xmlhttp.responseText;
+    }
+
+    xmlhttp.open("POST", "alterar.php");
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("alterar=" + stringFunc);
+}
