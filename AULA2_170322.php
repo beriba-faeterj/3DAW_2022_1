@@ -34,6 +34,10 @@ Execício 2
 	$variavel = 5+3;
 	
 	var_dump($variavel); // Exibe dados da variável
+
+        // ======================
+        // ====================== IF ELSE
+        // ======================
 	
 	echo "Variavel ";
 	if ($variavel > 5) {
