@@ -27,7 +27,7 @@ echo soma(8,9);
 
 echo "<br><br>===============================<br><br>";
 
-// PERCORRENDO ARRAYS
+// ARRAYS E FOREACH
 
 $carros = array("fusca", "opala", "bmw");
 
