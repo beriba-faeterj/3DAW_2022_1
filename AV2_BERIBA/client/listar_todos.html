@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<!--
+
+Nome: Lucas Beriba
+Matrícula: 2110478300001
+
+AV2
+
+-->
+
+<head>
+	<title>Listar todos -- AV2 - Beriba - 3DAW Manhã - 2022.1</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../formatacao.css">
+	<script type="text/javascript" src="../biblioteca.js"></script>
+</head>
+<!-- <body onload="listarTodosOnibus();"> -->
+    <nav class="flex-container">
+        <div><a href="../index.html">Início</a></div>
+        <div><a href="incluir.html">Incluir</a></div>
+        <div><a href="alterar.html">Alterar</a></div>
+        <div><a href="listar_todos.html">Listar todos</a></div>
+        <div><a href="listar_um.html">Listar um</a></div>
+        <div><a href="excluir.html">Excluir</a></div>
+    </nav>
+    <main>
+        <div id="form">
+            <form action="listar_todos.php" method="POST">
+                <label for="ordenacao">Selecione o campo para ordenação: </label>
+                <select name="ordenacao" id="ordenacao">
+                    <option value="id">ID</option>
+                    <option value="marca">Marca</option>
+                    <option value="modelo">Modelo</option>
+                    <option value="qtdAssentos">Qtd. de assentos</option>
+                    <option value="chassis">Chassis</option>
+                    <option value="placa">Placa</option>
+                </select>
+                <input type="button" name="enviar" id="enviar" value="Listar" onClick="listarTodosOnibus();">
+            </form>
+
+            <br><br>
+            Obs.: em caso de empate, os resultados serão ordenados pelo <b>chassis</b>, o qual é único para cada veículo.    
+        </div>
+        <div id="retorno"></div>
+    <main>
+</body>
+</html>
+

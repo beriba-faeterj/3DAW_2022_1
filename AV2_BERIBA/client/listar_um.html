@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<!--
+
+Nome: Lucas Beriba
+Matrícula: 2110478300001
+
+AV2 - Refazer AV1 com banco de dados
+
+-->
+
+<head>
+	<title>Listar um -- AV2 - Beriba - 3DAW Manhã - 2022.1</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../formatacao.css">
+	<script type="text/javascript" src="../biblioteca.js"></script>
+</head>
+<body>
+    <nav class="flex-container">
+        <div><a href="../index.html">Início</a></div>
+        <div><a href="incluir.html">Incluir</a></div>
+        <div><a href="alterar.html">Alterar</a></div>
+        <div><a href="listar_todos.html">Listar todos</a></div>
+        <div><a href="">Listar um</a></div>
+        <div><a href="excluir.html">Excluir</a></div>
+    </nav>
+    <main>
+        <div id="form">
+            <form action="listar.php" method="GET">
+                Chassis: <input type="text" name="chassis" id="chassis" value="">
+                <input type="button" name="enviar" name="enviar" value="Procurar" onClick="listarOnibus(null);">
+            </form>
+        </div>
+        <div id="retorno"></div>
+    <main>
+</body>
+</html>
+
